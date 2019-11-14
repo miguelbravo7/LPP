@@ -16,13 +16,17 @@ class Alimento
 		"#{@nombre}: Proteinas:#{@proteinas}g Carbohidratos:#{@carbohidratos}g Lipidos:#{@lipidos}g GEI:#{@emision_gases}kgCO2eq Terreno:#{@terreno_utilizado}m^2anio"
 	end
 
-	def por_ing_recomendada(genero)
-		if (@ing_rec.has_key? genero)
+	def por_ing_recomendada(poblacion)
+		if (@ing_rec.has_key? poblacion)
 			(@proteinas * @to_kcal[:proteinas] 
 			 + @carbohidratos * @to_kcal[:proteinas] 
-			 + @lipidos * @to_kcal[:lipidos]) / (@ing_rec[genero])
+			 + @lipidos * @to_kcal[:lipidos]) / (@ing_rec[poblacion])
 		else
-			0.0
+			raise StandardError, ("No existe ingesta recomendada para " + poblacion)
 		end
+	end
+
+	def impacto_ambiental()
+
 	end
 end
