@@ -20,11 +20,12 @@ RSpec.describe Alimento do
                         expect(@instancia.methods.include? :emision_gases).to eq(true)
                         expect(@instancia.methods.include? :terreno_utilizado).to eq(true)
                         expect(@instancia.methods.include? :to_s).to eq(true)
-                        expect(@instancia.methods.include? :valor_energetico).to eq(true)
+                        expect(@instancia.methods.include? :por_ing_recomendada).to eq(true)
                 end
                 it "Pruebas del funcionamiento correcto de los metodos en la clase" do
-			expect(@instancia.impacto_ambiental("hombre")).to eq(true)
-                        expect(@instancia.impacto_ambiental("mujer")).to eq(true)
+			expect(@instancia.por_ing_recomendada("adolescente")).to eq(0.0)
+			expect(@instancia.por_ing_recomendada("hombre")).to eq(0.021)
+                        expect(@instancia.por_ing_recomendada("mujer")).to eq(0.027391304347826086)
                 end
 
         end
