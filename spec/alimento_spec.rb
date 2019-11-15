@@ -35,9 +35,8 @@ RSpec.describe Alimento,"#metodos" do
                         expect(@instancia.por_ing_recomendada("mujer")).to eq(0.027391304347826086)
                 end
                 it "Pruebas del funcionamiento correcto del metodo de impacto ambiental diario" do
-                        expect(@instancia.impacto_ambiental()).to eq(0.0)
-			expect(@instancia.impacto_ambiental()).to eq(0.021)
-                        expect(@instancia.impacto_ambiental()).to eq(0.027391304347826086)
+                        expect(@instancia.impacto_ambiental("hombre")).to eq(142.85714285714283)
+			expect(@instancia.impacto_ambiental("mujer")).to eq(109.52380952380955)
                 end
 
         end

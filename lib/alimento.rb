@@ -1,13 +1,16 @@
 class Alimento
 	attr_accessor :nombre, :proteinas, :carbohidratos, :lipidos, :emision_gases, :terreno_utilizado
 	attr_reader :to_kcal, :ing_rec
-	def initialize()
-		@nombre = "a"
-		@proteinas = 1 
-	        @carbohidratos = 2 
-		@lipidos = 7
-		@emision_gases = 3
-		@terreno_utilizado = 4
+	def initialize(nombre, proteinas, carbohidratos, lipidos, emision_gases, terreno_utilizado)
+		@nombre = nombre
+		@proteinas = proteinas
+	        @carbohidratos = carbohidratos 
+		@lipidos = lipidos
+		@emision_gases = emision_gases
+		@terreno_utilizado = terreno_utilizado
+
+		raise ArgumentError, "Argumentos erroneos" unless (@proteinas.is_a?(Numeric) && @carbohidratos.is_a?(Numeric) && @lipidos.is_a?(Numeric) && @emision_gases.is_a?(Numeric) && @terreno_utilizado.is_a?(Numeric) && @nombre.is_a?(String))
+
 		@to_kcal = {:glucidos => 4.0, :lipidos => 9.0, :proteinas => 4.0}
 		@ing_rec = {"hombre" => 3000.0, "mujer" => 2300.0}
 	end
@@ -17,6 +20,8 @@ class Alimento
 	end
 
 	def por_ing_recomendada(poblacion)
+		raise StandardError, ("Parametro  tipo #{poblacion.class} no valido, usar String") unless poblacion.is_a? String
+		
 		if (@ing_rec.has_key? poblacion)
 			(@proteinas * @to_kcal[:proteinas] 
 			 + @carbohidratos * @to_kcal[:proteinas] 
@@ -26,7 +31,7 @@ class Alimento
 		end
 	end
 
-	def impacto_ambiental()
-
+	def impacto_ambiental(poblacion)
+		(1 / por_ing_recomendada(poblacion) ) * @emision_gases
 	end
 end
