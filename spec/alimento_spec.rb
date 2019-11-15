@@ -1,10 +1,11 @@
 require 'alimento'
 
 parametros = Hash.new()
-parametros[["a", 1, 2, 7, 3, 4]] = [0.021, 0.027391304347826086, 142.85714285714283, 109.52380952380955] 
+parametros[["prueba", 1, 1, 1, 1, 1]] = [0.003, 0.00391304347826087, 333.3333333333333, 255.55555555555554] 
+parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [0.009300000000000001, 0.012130434782608697, 5376.344086021505, 4121.863799283154]
 
 parametros.each do |args, resultados|
-	RSpec.describe Alimento,"#atributos" do
+	RSpec.describe Alimento,"#atributos-#{args[0]}" do
 		before(:all) do
 			@instancia = Alimento.new(*args) # uso del splat(*) operator
 		end
@@ -19,7 +20,7 @@ parametros.each do |args, resultados|
 		end
 	end
 
-	RSpec.describe Alimento,"#metodos" do
+	RSpec.describe Alimento,"#metodos-#{args[0]}" do
         	before(:all) do
                 	@instancia = Alimento.new(*args)
         	end
@@ -49,6 +50,7 @@ parametros.each do |args, resultados|
 			it "Excepciones por parametros erroneos" do
 				expect { @instancia.por_ing_recomendada("adolescente") }.to raise_error(/No existe ingesta recomendada para/)
 				expect { @instancia.por_ing_recomendada(1337) }.to raise_error(/Parametro .+ no valido/)
+				expect { Alimento.new(1, 1, 1, 1, 1, 1) }.to raise_error(/Argumentos erroneos/)
 			end
 		end
 	end
