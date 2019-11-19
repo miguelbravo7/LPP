@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Miguel Bravo Arvelo"]
   spec.email         = ["alu0101031538@ull.edu.es"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Implementacion de la gema de la clase alimento en ruby usando bundler.}
+  spec.description   = %q{Esta gema ha sido hecha con un desarrollo dirigido por pruebas.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
@@ -30,4 +30,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "guard"
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "guard-bundler"
+  spec.add_development_dependency "guard-shell"
 end
