@@ -7,8 +7,12 @@ parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [0.0093000000000000
 parametros.each do |args, resultados|
 	RSpec.describe Alimento,"#atributos-#{args[0]}" do
 		before(:all) do
-			@instancia = Alimento.new(*args) # uso del splat(*) operator
+			@instancia = Alimento::Alimento.new(*args) # uso del splat(*) operator
 		end
+
+		it "Tiene un numero de version" do
+                  expect(Alimento::VERSION).not_to be nil
+                end
 	
 		context "Pruebas a los atributos" do
 			it "Pruebas de existencia de instancia en la clase" do 
@@ -22,7 +26,7 @@ parametros.each do |args, resultados|
 
 	RSpec.describe Alimento,"#metodos-#{args[0]}" do
         	before(:all) do
-                	@instancia = Alimento.new(*args)
+                	@instancia = Alimento::Alimento.new(*args)
         	end
 
 
@@ -50,7 +54,7 @@ parametros.each do |args, resultados|
 			it "Excepciones por parametros erroneos" do
 				expect { @instancia.por_ing_recomendada("adolescente") }.to raise_error(/No existe ingesta recomendada para/)
 				expect { @instancia.por_ing_recomendada(1337) }.to raise_error(/Parametro .+ no valido/)
-				expect { Alimento.new(1, 1, 1, 1, 1, 1) }.to raise_error(/Argumentos erroneos/)
+				expect { Alimento::Alimento.new(1, 1, 1, 1, 1, 1) }.to raise_error(/Argumentos erroneos/)
 			end
 		end
 	end

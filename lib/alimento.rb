@@ -1,9 +1,12 @@
-class Alimento
-	attr_accessor :nombre, :proteinas, :carbohidratos, :lipidos, :emision_gases, :terreno_utilizado
-	attr_reader :to_kcal, :ing_rec
-	def initialize(nombre, proteinas, carbohidratos, lipidos, emision_gases, terreno_utilizado)
-		@nombre = nombre
-		@proteinas = proteinas
+require "alimento/version"
+
+module Alimento
+  class Alimento
+  	attr_accessor :nombre, :proteinas, :carbohidratos, :lipidos, :emision_gases, :terreno_utilizado
+  	attr_reader :to_kcal, :ing_rec
+  	def initialize(nombre, proteinas, carbohidratos, lipidos, emision_gases, terreno_utilizado)
+  		@nombre = nombre
+  		@proteinas = proteinas
 	        @carbohidratos = carbohidratos 
 		@lipidos = lipidos
 		@emision_gases = emision_gases
@@ -34,4 +37,5 @@ class Alimento
 	def impacto_ambiental(poblacion)
 		(1 / por_ing_recomendada(poblacion) ) * @emision_gases
 	end
+  end
 end
