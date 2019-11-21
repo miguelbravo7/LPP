@@ -44,6 +44,24 @@ parametros.each do |args, resultados|
                                 expect(@instancia.insertar([1337, 1337])).to eq(true)
                                 expect(@instancia.size).to eq(3)
 			end
+
+
+                        it "Puebas al funcionamiento del metodo extraerPrimero" do
+                                expect(@instancia.extraerPrimero()).to eq(false)
+                                @instancia.insertar([1337, 1337])
+                                expect(@instancia.size).to eq(2)
+                                expect(@instancia.extraerPrimero()).to eq(true)
+                                expect(@instancia.size).to eq(1)
+                        end
+
+                        it "Puebas al funcionamiento del metodo extraerUltimo" do
+                                expect(@instancia.extraerUltimo()).to eq(false)
+                                @instancia.insertar([1337, 1337])
+                                expect(@instancia.size).to eq(2)
+                                expect(@instancia.extraerUltimo()).to eq(true)
+                                expect(@instancia.size).to eq(1)
+                        end
+
                 end
 		
                 context "Pruebas al manejo de excepciones" do
