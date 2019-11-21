@@ -88,7 +88,7 @@ guard :shell do
   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
 end
 
-guard :rspec, cmd: 'rspec -I. -f d spec/alimento_spec.rb' do
+guard :rspec, cmd: 'rspec -I. -f d spec/*_spec.rb' do
   require 'guard/rspec'
   require "guard/rspec/inspectors/simple_inspector.rb"
   module ::Guard

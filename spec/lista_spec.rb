@@ -4,7 +4,7 @@ parametros = Hash.new()
 parametros[[]] = [0, 255]
 
 parametros.each do |args, resultados|
-        RSpec.describe Lista,"#atributos-#{args[0]}" do
+        RSpec.describe Alimento,"-Lista#atributos" do
                 before(:all) do
                         @instancia = Alimento::Lista.new(*args) # uso del splat(*) operator
                 end
@@ -18,16 +18,16 @@ parametros.each do |args, resultados|
                                 expect(@instancia.instance_variables.include? :@nodo).to eq(true)
                                 expect(@instancia.instance_variables.include? :@head).to eq(true)
                                 expect(@instancia.instance_variables.include? :@tail).to eq(true)
-                                expect(@instancia.nodo.include? :@data).to eq(true)
-                                expect(@instancia.nodo.include? :@next).to eq(true)
-                                expect(@instancia.nodo.include? :@prev).to eq(true)
+				expect(@instancia.nodo.members.include? :data).to eq(true)
+				expect(@instancia.nodo.members.include? :next).to eq(true)
+				expect(@instancia.nodo.members.include? :prev).to eq(true)
                         end
                 end
         end
 
-        RSpec.describe Lista,"#metodos-#{args[0]}" do
+        RSpec.describe Alimento,"-Lista#metodos" do
                 before(:all) do
-                        @instancia = Alimento::Alimento.new(*args)
+                        @instancia = Alimento::Lista.new(*args)
                 end
 
 
