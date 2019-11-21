@@ -15,12 +15,12 @@ parametros.each do |args, resultados|
 
                 context "Pruebas a los atributos" do
                         it "Pruebas de existencia de instancia en la clase" do
-                                expect(@instancia.instance_variables.include? :@nodo).to eq(true)
+				expect(Alimento::Lista.class_variables.include? :@@Nodo).to eq(true)
                                 expect(@instancia.instance_variables.include? :@head).to eq(true)
                                 expect(@instancia.instance_variables.include? :@tail).to eq(true)
-				expect(@instancia.nodo.members.include? :data).to eq(true)
-				expect(@instancia.nodo.members.include? :next).to eq(true)
-				expect(@instancia.nodo.members.include? :prev).to eq(true)
+				expect(Alimento::Lista.Nodo.members.include? :data).to eq(true)
+				expect(Alimento::Lista.Nodo.members.include? :next).to eq(true)
+				expect(Alimento::Lista.Nodo.members.include? :prev).to eq(true)
                         end
                 end
         end
@@ -38,8 +38,14 @@ parametros.each do |args, resultados|
                                 expect(@instancia.methods.include? :extraerUltimo).to eq(true)
                         end
 
+			it "Puebas al funcionamiento del metodo insertar" do
+				expect(@instancia.insertar(1337)).to eq(true)
+				expect(@instancia.size).to eq(1)
+                                expect(@instancia.insertar([1337, 1337])).to eq(true)
+                                expect(@instancia.size).to eq(3)
+			end
                 end
-
+		
                 context "Pruebas al manejo de excepciones" do
                         it "Excepciones por parametros erroneos" do
 

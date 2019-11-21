@@ -1,15 +1,43 @@
 module Alimento
 
 	class Lista
-	attr_reader :nodo, :head, :tail
+		attr_reader :head, :tail, :size
+		@@Nodo = Struct.new(:data, :prev, :next)
+		
 		def initialize()
-			@nodo = Struct.new(:data, :next, :prev)
 			@head = nil
 			@tail = nil
+			@size = 0
 		end
 
-		def insertar
+		def self.Nodo
+			@@Nodo
+		end
 
+		def insertar(value)
+			if value.respond_to? :each
+				value.each { |x| 
+					insertarValor(x)
+				}
+			else
+				insertarValor(value)
+			end
+
+			true
+		end
+
+		def insertarValor(value)
+			if !@tail.nil?
+                                @nodo = @@Nodo.new(value, @tail, nil)
+                                @tail[:next] = @nodo
+                                @tail = @nodo
+			else
+				@tail = @head = @@Nodo.new(value, @tail, nil)
+			end
+			
+			@size += 1
+
+			true
 		end
 
 		def extraerPrimero
