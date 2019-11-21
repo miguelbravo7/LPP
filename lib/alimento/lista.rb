@@ -26,6 +26,15 @@ module Alimento
 		def self.Nodo
 			@@Nodo
 		end
+		
+		def each
+			cur_node = @head
+			while cur_node
+        			yield cur_node[:data]
+				cur_node = cur_node[:next]
+			end
+
+    		end
 
 		def insertar(value)
 			if value.respond_to? :each
