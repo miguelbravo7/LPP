@@ -26,7 +26,7 @@ parametros.each do |args, resultados|
         end
 
         RSpec.describe Alimento,"-Lista#metodos" do
-                before(:all) do
+                before(:each) do
                         @instancia = Alimento::Lista.new(*args)
                 end
 

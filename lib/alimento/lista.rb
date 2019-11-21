@@ -1,7 +1,9 @@
 module Alimento
 
 	class Lista
+		# Atributos de instancia
 		attr_reader :head, :tail, :size
+		# Atributos de clase
 		@@Nodo = Struct.new(:data, :prev, :next)
 		
 		def initialize()
@@ -10,6 +12,17 @@ module Alimento
 			@size = 0
 		end
 
+		def to_s
+       			current_node = @head
+        		while current_node != nil
+            			current_node.to_s
+            			current_node = current_node[:next]
+        		end
+
+			nil
+    		end
+
+		# Getter del atributo de clase Nodo
 		def self.Nodo
 			@@Nodo
 		end
@@ -26,6 +39,7 @@ module Alimento
 			true
 		end
 
+		# Metodo del que depende el metodo insertar
 		def insertarValor(value)
 			if !@tail.nil?
                                 @nodo = @@Nodo.new(value, @tail, nil)
@@ -41,10 +55,40 @@ module Alimento
 		end
 
 		def extraerPrimero
+			if @size < 2
+				if @head.nil?
+					false
+				else
+					@head = nil
+					@tail = nil
+					@size = 0
+					true
+				end
+			else
+				@head = @head[:next]
+				@head[:prev] = nil
+				@size -= 1
+				true
+			end
 
 		end
 
 		def extraerUltimo
+                        if @size < 2
+                                if @tail.nil?
+                                        false
+                                else
+                                        @head = nil
+                                        @tail = nil
+                                        @size = 0
+                                        true
+                                end
+                        else
+                                @tail = @tail[:prev]
+                                @tail[:next] = nil
+                                @size -= 1
+                                true
+                        end
 
 		end
 	end
