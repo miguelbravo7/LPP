@@ -5,6 +5,14 @@ parametros[["prueba", 1, 1, 1, 1, 1]] = [0.003, 0.00391304347826087, 333.3333333
 parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [0.009300000000000001, 0.012130434782608697, 5376.344086021505, 4121.863799283154]
 
 parametros.each do |args, resultados|
+	RSpec.describe Alimento,"#herencias-#{args[0]}" do
+		context "Pruebas a los modulos incluidos en la clase alimento" do
+			it "Comprobacion de existencia de modulos requeridos" do
+				expect(Alimento.included_modules.include? Comparable).to eq(true)	
+			end
+		end
+	end
+
 	RSpec.describe Alimento,"#atributos-#{args[0]}" do
 		before(:all) do
 			@instancia = Alimento::Alimento.new(*args) # uso del splat(*) operator
@@ -38,6 +46,8 @@ parametros.each do |args, resultados|
                         	expect(@instancia.methods.include? :to_s).to eq(true)
                         	expect(@instancia.methods.include? :por_ing_recomendada).to eq(true)
                         	expect(@instancia.methods.include? :impacto_ambiental).to eq(true)
+
+				expect(@instancia.methods.include? :<=>).to eq(true)
                 	end
 			it "Pruebas del funcionamiento correcto del metodo para el calculo de la ingesta recomendada." do
 				expect(@instancia.por_ing_recomendada("hombre")).to eq(resultados[0])
