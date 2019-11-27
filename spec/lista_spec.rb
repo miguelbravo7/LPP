@@ -5,6 +5,14 @@ parametros[[70.0, 25550.0, 349.0]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 16
 parametros[[45.2, 16498.0, 65.9]] = [["Huevos", 13.0, 1.1, 11.0, 42.0, 57.0], ["Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9]]
 parametros[[55.7, 20330.5, 171.1]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0], ["Pollo", 20.6, 0.0, 5.6, 5.7, 7.1]]
 
+RSpec.describe Alimento,"-Lista#herencias" do
+        context "Pruebas a los modulos incluidos en la clase Lista" do
+        	it "Comprobacion de existencia de modulos requeridos" do
+        	        expect(Alimento::Lista.included_modules.include? Enumerable).to eq(true)
+                end
+        end
+end
+
 RSpec.describe Alimento,"-Lista#atributos" do
 	before(:all) do
 		@instancia = Alimento::Lista.new()
