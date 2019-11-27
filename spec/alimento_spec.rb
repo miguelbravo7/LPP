@@ -8,7 +8,7 @@ parametros.each do |args, resultados|
 	RSpec.describe Alimento,"#herencias-#{args[0]}" do
 		context "Pruebas a los modulos incluidos en la clase alimento" do
 			it "Comprobacion de existencia de modulos requeridos" do
-				expect(Alimento.included_modules.include? Comparable).to eq(true)	
+				expect(Alimento::Alimento.included_modules.include? Comparable).to eq(true)	
 			end
 		end
 	end

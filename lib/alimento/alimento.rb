@@ -6,6 +6,7 @@ module Alimento
   # Clase alimento que representa un alimento con sus propiedades nutricionales,
   # su emision de gases y el terreno que se requiere para producir el alimento 
   class Alimento
+	include Comparable
 
   	# Atributos de instancia que representan las propiedades del alimento
   	attr_accessor :nombre, :proteinas, :carbohidratos, :lipidos, :emision_gases, :terreno_utilizado
@@ -39,6 +40,10 @@ module Alimento
 	# @return [String] cadena con el alimento y sus propiedades
 	def to_s()
 		"#{@nombre}: Proteinas:#{@proteinas}g Carbohidratos:#{@carbohidratos}g Lipidos:#{@lipidos}g GEI:#{@emision_gases}kgCO2eq Terreno:#{@terreno_utilizado}m^2anio"
+	end
+
+	def <=>(obj)
+		[(1)] <=> [(1)]
 	end
 
 	# Metodo que calcula el porcentaje que aporta el alimento sobre la ingesta recomendada
