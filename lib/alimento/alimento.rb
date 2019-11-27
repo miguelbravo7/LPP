@@ -43,7 +43,7 @@ module Alimento
 	end
 
 	def <=>(obj)
-		[(1)] <=> [(1)]
+		[@proteinas, @carbohidratos, @lipidos, @emision_gases, @terreno_utilizado] <=> [obj.proteinas, obj.carbohidratos, obj.lipidos, obj.emision_gases, obj.terreno_utilizado]
 	end
 
 	# Metodo que calcula el porcentaje que aporta el alimento sobre la ingesta recomendada

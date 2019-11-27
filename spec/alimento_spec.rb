@@ -1,14 +1,37 @@
 require 'alimento'
 
 parametros = Hash.new()
-parametros[["prueba", 1, 1, 1, 1, 1]] = [0.003, 0.00391304347826087, 333.3333333333333, 255.55555555555554] 
-parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [0.009300000000000001, 0.012130434782608697, 5376.344086021505, 4121.863799283154]
+parametros[["prueba", 1, 1, 1, 1, 1]] = [[false, true, true, false, true, true, ["prueba", 1, 1, 1, 1, 1], ["prueba", 1, 1, 1, 1, 1]],
+					 [0.003, 0.00391304347826087, 333.3333333333333, 255.55555555555554]] 
+parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [[false, false, false, true, true, true, ["prueba", 31, 1, 1, 1, 1], ["prueba", 1, 1, 1, 1, 1]],
+							      [0.009300000000000001, 0.012130434782608697, 5376.344086021505, 4121.863799283154]]
 
 parametros.each do |args, resultados|
 	RSpec.describe Alimento,"#herencias-#{args[0]}" do
+		before(:all) do
+                        @instancia = Alimento::Alimento.new(*args)
+                end
+
 		context "Pruebas a los modulos incluidos en la clase alimento" do
 			it "Comprobacion de existencia de modulos requeridos" do
 				expect(Alimento::Alimento.included_modules.include? Comparable).to eq(true)	
+			end
+		end
+
+		context "Pruebas a los metodos heredados" do
+			it "Pruebas al mixin Comparable" do
+				@instancia_comparar1 = Alimento::Alimento.new(*resultados[0][-1])
+				@instancia_comparar2 = Alimento::Alimento.new(*resultados[0][-2])
+
+				expect(@instancia < @instancia_comparar1).to eq(resultados[0][0])
+				expect(@instancia <= @instancia_comparar1).to eq(resultados[0][1])
+				expect(@instancia == @instancia_comparar1).to eq(resultados[0][2])
+				expect(@instancia > @instancia_comparar1).to eq(resultados[0][3])
+				expect(@instancia >= @instancia_comparar1).to eq(resultados[0][4])
+				expect(@instancia.between? @instancia_comparar1, @instancia_comparar2).to eq(resultados[0][5])
+				expect(@instancia.clamp(@instancia_comparar1, @instancia_comparar2)).to eq(@instancia)
+				expect(@instancia_comparar1.clamp(@instancia, @instancia_comparar2)).to eq(@instancia)
+				expect(@instancia_comparar2.clamp(@instancia_comparar1, @instancia)).to eq(@instancia)
 			end
 		end
 	end
@@ -37,7 +60,6 @@ parametros.each do |args, resultados|
                 	@instancia = Alimento::Alimento.new(*args)
         	end
 
-
         	context "Pruebas a los metodos" do
                 	it "Pruebas de existencia de metodos en la clase" do
                         	expect(@instancia.methods.include? :nombre).to eq(true)
@@ -50,12 +72,12 @@ parametros.each do |args, resultados|
 				expect(@instancia.methods.include? :<=>).to eq(true)
                 	end
 			it "Pruebas del funcionamiento correcto del metodo para el calculo de la ingesta recomendada." do
-				expect(@instancia.por_ing_recomendada("hombre")).to eq(resultados[0])
-                        	expect(@instancia.por_ing_recomendada("mujer")).to eq(resultados[1])
+				expect(@instancia.por_ing_recomendada("hombre")).to eq(resultados[1][0])
+                        	expect(@instancia.por_ing_recomendada("mujer")).to eq(resultados[1][1])
                 	end
                 	it "Pruebas del funcionamiento correcto del metodo de impacto ambiental diario" do
-                        	expect(@instancia.impacto_ambiental("hombre")).to eq(resultados[2])
-				expect(@instancia.impacto_ambiental("mujer")).to eq(resultados[3])
+                        	expect(@instancia.impacto_ambiental("hombre")).to eq(resultados[1][2])
+				expect(@instancia.impacto_ambiental("mujer")).to eq(resultados[1][3])
                 	end
 
         	end
