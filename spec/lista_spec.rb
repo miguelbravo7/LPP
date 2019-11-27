@@ -1,16 +1,38 @@
 require 'alimento'
 
 parametros = Hash.new()
-parametros[[70.0, 25550.0, 349.0]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0], ["Carne de cordero", 18.0, 0.0, 17.0, 20.0, 185.0]]
-parametros[[45.2, 16498.0, 65.9]] = [["Huevos", 13.0, 1.1, 11.0, 42.0, 57.0], ["Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9]]
-parametros[[55.7, 20330.5, 171.1]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0], ["Pollo", 20.6, 0.0, 5.6, 5.7, 7.1]]
+parametros[[["Carne de vaca", "Carne de cordero"], [70.0, 25550.0, 349.0]]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0], ["Carne de cordero", 18.0, 0.0, 17.0, 20.0, 185.0]]
+parametros[[["Huevos", "Leche de vaca"], [45.2, 16498.0, 65.9]]] = [["Huevos", 13.0, 1.1, 11.0, 42.0, 57.0], ["Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9]]
+parametros[[["Carne de vaca", "Pollo"], [55.7, 20330.5, 171.1]]] = [["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0], ["Pollo", 20.6, 0.0, 5.6, 5.7, 7.1]]
+parametros.each do |arg, p_alimentos|
+	RSpec.describe Alimento,"-Lista#herencias" do
+		before(:each) do
+        	       @instancia = Alimento::Lista.new()
+	               p_alimentos.each do |params|
+                       		@instancia.insertar(Alimento::Alimento.new(*params))
+                	end   
+        	end
+		
+		context "Pruebas a los modulos incluidos en la clase Lista" do
+	        	it "Comprobacion de existencia de modulos requeridos" do
+	        	        expect(Alimento::Lista.included_modules.include? Enumerable).to eq(true)
+	                end
+	        end
 
-RSpec.describe Alimento,"-Lista#herencias" do
-        context "Pruebas a los modulos incluidos en la clase Lista" do
-        	it "Comprobacion de existencia de modulos requeridos" do
-        	        expect(Alimento::Lista.included_modules.include? Enumerable).to eq(true)
-                end
-        end
+		context "Pruebas a los metodos heredados" do
+			it "Pruebas al mixin Enumerable" do
+				expect(@instancia.max.nombre).to eq(arg[0][0])
+				expect(@instancia.min.nombre).to eq(arg[0][1])
+								
+				expect(@instancia.select{|obj| obj.nombre == arg[0][1]}[0].nombre).to eq(arg[0][1])
+
+				expect(@instancia.sort{|obja, objb| obja.proteinas <=> objb.proteinas}[0].nombre).to eq(arg[0][1])
+
+				@instancia.collect{|obj| obj.nombre += " envasado"}
+				expect(@instancia.max.nombre).to eq(arg[0][0] + " envasado")	
+			end
+		end
+	end
 end
 
 RSpec.describe Alimento,"-Lista#atributos" do
@@ -89,7 +111,7 @@ parametros.each do |arg, p_alimentos|
 				@instancia.each do |data|
 					sum += data.emision_gases
 				end
-				expect(sum).to eq(arg[0])
+				expect(sum).to eq(arg[1][0])
                         end
 
                         it "Emisiones anuales de gases de efecto invernadero" do
@@ -97,7 +119,7 @@ parametros.each do |arg, p_alimentos|
                                 @instancia.each do |data|
 					sum += data.emision_gases
                                 end
-				expect(sum * 365).to eq(arg[1])
+				expect(sum * 365).to eq(arg[1][1])
                         end
 
                         it "Uso de terreno en metros cuadrados" do
@@ -105,7 +127,7 @@ parametros.each do |arg, p_alimentos|
                                 @instancia.each do |data|
 					sum += data.terreno_utilizado
                                 end
-				expect(sum).to eq(arg[2])
+				expect(sum).to eq(arg[1][2])
                         end
                 end
 	end
