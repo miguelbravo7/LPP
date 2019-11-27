@@ -4,6 +4,8 @@ module Alimento
 
 	 # Clase lista que representa una lista doblemente enlazada
 	class Lista
+		include Enumerable
+
 		# Atributos de instancia
 		attr_reader :head, :tail, :size
 
