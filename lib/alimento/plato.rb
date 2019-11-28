@@ -5,8 +5,8 @@ module Alimento
 	class Plato
 		include Comparable
 		# Atributos de instancia que representan las propiedades del plato
-		attr_reader :nombre, :cjto_gramos
-		attr_accessor :alimentos
+		attr_reader :cjto_gramos
+		attr_accessor :nombre, :alimentos
 
 		# Constructor de clase
 		# @param nombre [String] nombre del plato
