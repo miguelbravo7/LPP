@@ -107,7 +107,7 @@ RSpec.describe Alimento,"-Lista#metodos" do
 end
 
 parametros.each do |arg, p_alimentos|
-	RSpec.describe Alimento,"-Lista#Expectativa lista limentos " do
+	RSpec.describe Alimento,"-Lista#Expectativa lista Alimentos" do
                 before(:all) do
                         @instancia = Alimento::Lista.new()
 			p_alimentos.each do |params|
