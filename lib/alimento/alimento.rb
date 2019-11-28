@@ -1,5 +1,4 @@
-# @title Modulo de la clase alimento.
-# Modulo en el que se ha implementado la clase Alimento
+# Implementacion de la clase Alimento
 # @author Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
 module Alimento
 
