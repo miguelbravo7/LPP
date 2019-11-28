@@ -23,12 +23,13 @@ module Alimento
 		# @return [String] devuelve los valores como cadena que alberga la lista	
 		def to_s
        			current_node = @head
+			output = ""
         		while current_node != nil
-            			current_node.to_s
+            			output += current_node[:data].to_s + "\n"
             			current_node = current_node[:next]
         		end
 
-			nil
+			output
     		end
 
 		# Getter del atributo de clase Nodo
