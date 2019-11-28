@@ -1,4 +1,4 @@
-# Implementacion de la clase Alimento 
+# Implementacion de la clase Plato 
 # @author Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
 module Alimento
 	# Clase Plato que representa un un grupo de alimentos con sus propiedades nutricionales
