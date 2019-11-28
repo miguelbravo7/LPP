@@ -1,3 +1,4 @@
+# @uathor Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
 module Alimento
 	# Clase creada con el objetivo de cumplir el principio de sustitucion de Liskov
 	class PlatoExtendido < Plato
@@ -5,14 +6,18 @@ module Alimento
 		
 		def initialize(nombre, alimentos)
 			super(nombre, alimentos)
-			@gases_invernadero = 0
-			alimentos.each do |data|
-				 @gases_invernadero += data.emision_gases
-			end
 		end
 
 		def eficiencia_energetica
+			gases_invernadero / uso_terreno
+		end
 
+		def gases_invernadero
+			sum = 0
+			alimentos.each do |data|
+				sum += data.emision_gases
+			end
+			sum
 		end
 
 		def uso_terreno

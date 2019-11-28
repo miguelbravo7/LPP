@@ -3,6 +3,7 @@
 module Alimento
 	# Clase Plato que representa un un grupo de alimentos con sus propiedades nutricionales
 	class Plato
+		include Comparable
 		# Atributos de instancia que representan las propiedades del plato
 		attr_reader :nombre, :cjto_gramos
 		attr_accessor :alimentos
@@ -27,6 +28,10 @@ module Alimento
 			output = @nombre + "\n"
 			output += @alimentos.to_s
 			output
+		end
+
+		def <=>(obj)
+			[@cjto_gramos, @alimentos] <=> [obj.cjto_gramos, obj.alimentos]
 		end
 
 		# Metodo que calcula el porcentaje de proteinas del plato
