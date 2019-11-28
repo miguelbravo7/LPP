@@ -31,7 +31,7 @@ module Alimento
 
 		raise ArgumentError, "Argumentos erroneos" unless (@proteinas.is_a?(Numeric) && @carbohidratos.is_a?(Numeric) && @lipidos.is_a?(Numeric) && @emision_gases.is_a?(Numeric) && @terreno_utilizado.is_a?(Numeric) && @nombre.is_a?(String))
 
-		@to_kcal = {:glucidos => 4.0, :lipidos => 9.0, :proteinas => 4.0}
+		@to_kcal = {:carbohidratos => 4.0, :lipidos => 9.0, :proteinas => 4.0}
 		@ing_rec = {"hombre" => 3000.0, "mujer" => 2300.0}
 	end
 
@@ -52,9 +52,7 @@ module Alimento
 		raise StandardError, ("Parametro  tipo #{poblacion.class} no valido, usar String") unless poblacion.is_a? String
 		
 		if (@ing_rec.has_key? poblacion)
-			(@proteinas * @to_kcal[:proteinas] 
-			 + @carbohidratos * @to_kcal[:proteinas] 
-			 + @lipidos * @to_kcal[:lipidos]) / (@ing_rec[poblacion])
+			kcal_sum / @ing_rec[poblacion]
 		else
 			raise StandardError, ("No existe ingesta recomendada para " + poblacion)
 		end
@@ -65,6 +63,16 @@ module Alimento
 	# @raise (see #por_ing_recomendada)
 	def impacto_ambiental(poblacion)
 		(1 / por_ing_recomendada(poblacion) ) * @emision_gases
+	end
+
+	# Metodo de ayuda para el calculo de kilo calorias
+	# @return [Numeric] valor de gramos traducidos a kcal
+	def kcal_sum
+		sum = 0
+		sum += @proteinas * @to_kcal[:proteinas]
+		sum += @carbohidratos * @to_kcal[:carbohidratos]
+		sum += @lipidos * @to_kcal[:lipidos]
+		sum
 	end
   end
 end

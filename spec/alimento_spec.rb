@@ -2,9 +2,9 @@ require 'alimento'
 
 parametros = Hash.new()
 parametros[["prueba", 1, 1, 1, 1, 1]] = [[false, true, true, false, true, true, ["prueba", 1, 1, 1, 1, 1], ["prueba", 1, 1, 1, 1, 1]],
-					 [0.003, 0.00391304347826087, 333.3333333333333, 255.55555555555554]] 
+					 [0.005666666666666667, 0.007391304347826087, 176.47058823529412, 135.2941176470588]] 
 parametros[["Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0]] = [[false, false, false, true, true, true, ["prueba", 31, 1, 1, 1, 1], ["prueba", 1, 1, 1, 1, 1]],
-							      [0.009300000000000001, 0.012130434782608697, 5376.344086021505, 4121.863799283154]]
+					  [0.03743333333333334, 0.04882608695652174, 1335.707925200356, 1024.0427426536064]]
 
 parametros.each do |args, resultados|
 	RSpec.describe Alimento,"#herencias-#{args[0]}" do

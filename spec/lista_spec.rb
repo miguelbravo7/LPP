@@ -21,7 +21,6 @@ parametros.each do |arg, p_alimentos|
 
 		context "Pruebas a los metodos heredados" do
 			it "Pruebas al mixin Enumerable" do
-				puts @instancia.to_s
 				expect(@instancia.max.nombre).to eq(arg[0][0])
 				expect(@instancia.min.nombre).to eq(arg[0][1])
 								
