@@ -1,6 +1,6 @@
 # Implementacion de la clase Plato 
 # @author Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
-module Alimento
+module Plato
 	# Clase Plato que representa un un grupo de alimentos con sus propiedades nutricionales
 	class Plato
 		include Comparable
@@ -13,7 +13,7 @@ module Alimento
 		# @param alimentos [Alimento::List] lista de alimentos del plato
 		# @raise ArgumentError si los valores introducidos no son del tipo correcto
 		def initialize(nombre, alimentos)
-			raise ArgumentError unless nombre.is_a?(String) && alimentos.is_a?(Lista)
+			raise ArgumentError unless nombre.is_a?(String) && alimentos.is_a?(Alimento::Lista)
 			@nombre = nombre
 			@alimentos = alimentos
 			@cjto_gramos = 0

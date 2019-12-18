@@ -1,6 +1,6 @@
 # Implementacion de la clase PlatoExtendido
 # @author Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
-module Alimento
+module Plato 
 	# Clase PlatoExtendido creada siguiendo el principio de sustitucion de Liskov
 	class PlatoExtendido < Plato
 		# Atributos que representan la clase PlatoExtendido

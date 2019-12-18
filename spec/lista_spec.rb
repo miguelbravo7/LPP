@@ -10,7 +10,7 @@ tmp_lista = Alimento::Lista.new()
 tmp_lista.insertar([Alimento::Alimento.new("Queso", 25.0, 1.3, 33.0, 11.0, 41.0), Alimento::Alimento.new("Pollo", 20.6, 0.0,5.6, 5.7, 7.1)])
 tmp_lista2 = Alimento::Lista.new()
 tmp_lista2.insertar([Alimento::Alimento.new("Huevos", 13.0, 1.1, 11.0, 42.0, 57.0), Alimento::Alimento.new("Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9)])
-parametros_plato[[["Bocadillo", "Merengue"]]] = [Alimento::Plato.new("Bocadillo", tmp_lista), Alimento::PlatoExtendido.new("Merengue", tmp_lista2)]
+parametros_plato[[["Bocadillo", "Merengue"]]] = [Plato::Plato.new("Bocadillo", tmp_lista), Plato::PlatoExtendido.new("Merengue", tmp_lista2)]
 
 [parametros, parametros_plato].each do |hash| 
 	hash.each do |arg, p_alimentos|
