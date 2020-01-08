@@ -9,8 +9,8 @@ module Plato
 		# Constructor de clase
 		# @param nombre [String] nombre del plato
 		# @param alimentos [Alimento::List] lista de alimentos del plato
-		def initialize(nombre, alimentos)
-			super(nombre, alimentos)
+		def initialize(nombre, alimentos, &block)
+			super(nombre, alimentos, block)
 		end
 
 		# Metodo para calcular la eficiencia energetica

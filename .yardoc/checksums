@@ -1,0 +1,7 @@
+lib/alimento.rb 5a4c5a49a7c35b45e7518837835bfdffe375d599
+lib/alimento/menu.rb fee4c79a121c95ae5b4c269623a6427b48fe57cb
+lib/alimento/lista.rb 7cc637e638cbf662c78723e6336dce70e7d73796
+lib/alimento/plato.rb 53cd83541b794d25f20676806a11e93b5434989d
+lib/alimento/version.rb 5c04d3325bee289a8925b05140cd75b9eeb91909
+lib/alimento/alimento.rb a484999f0788a017f0d27100c356c9360ef27b04
+lib/alimento/platoextendido.rb 35e066f1486c105e09edab94e2f9eae0eccba50b

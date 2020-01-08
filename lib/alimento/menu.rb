@@ -10,8 +10,18 @@ module Menu
 		def initialize()
 			@precios = Array.new()
 			@platos = Array.new()
+			if block_given?
+      				if block.arity == 1
+        				yield self
+      				else
+       					instance_eval(&block)
+      				end
+   			end
 		end
 
+		# Metodo para añadir un plato al menu
+                # @param nombre [Plato::Plato] plato a añadir
+                # @param nombre [Numeric] precio del plato
 		def anadir_plato(plato, precio)
 			@platos << plato
 			@precios << precio

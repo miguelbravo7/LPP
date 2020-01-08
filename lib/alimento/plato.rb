@@ -22,7 +22,7 @@ module Plato
 		# @param nombre [String] nombre del plato
 		# @param alimentos [Alimento::List] lista de alimentos del plato
 		# @raise ArgumentError si los valores introducidos no son del tipo correcto
-		def initialize(nombre, alimentos)
+		def initialize(nombre, alimentos, &block)
 			raise ArgumentError unless nombre.is_a?(String) && alimentos.is_a?(Alimento::Lista)
 			@nombre = nombre
 			@alimentos = alimentos
@@ -30,6 +30,13 @@ module Plato
 			alimentos.each do |data|
 				@cjto_gramos += data.proteinas + data.lipidos + data.carbohidratos
 			end
+			if block_given?
+                                if block.arity == 1
+                                        yield self
+                                else
+                                        instance_eval(&block)
+                                end
+                        end
 		end
 
 		# Metodo para representar la clase como cadena
@@ -42,6 +49,10 @@ module Plato
 
 		def <=>(obj)
 			[@cjto_gramos, @alimentos] <=> [obj.cjto_gramos, obj.alimentos]
+		end
+
+		def alimento(nombre, opciones = {})
+			@alimentos.insertar(new Alimento::Alimento(nombre, opciones[:proteinas], opciones[:carbohidratos], opciones[:lipidos], opciones[:emision_gases], opciones[:terreno_utilizado]))
 		end
 
                 # Metodo que calcula el sumatorio de energia del plato
