@@ -1,0 +1,7 @@
+*.swp
+/bin
+/bin/*
+.rspec
+spec
+.bundle
+tmp
