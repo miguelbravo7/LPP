@@ -7,7 +7,7 @@ module Menu
 		attr_accessor :precios, :platos
 
 		# Constructor de clase
-		def initialize()
+		def initialize(&block)
 			@precios = Array.new()
 			@platos = Array.new()
 			if block_given?
