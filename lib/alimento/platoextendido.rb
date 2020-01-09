@@ -1,16 +1,16 @@
 # Implementacion de la clase PlatoExtendido
 # @author Miguel Bravo Arvelo <alu0101031538@ull.edu.es>
-module Plato 
+module Plato
 	# Clase PlatoExtendido creada siguiendo el principio de sustitucion de Liskov
 	class PlatoExtendido < Plato
 		# Atributos que representan la clase PlatoExtendido
 		attr_reader :gases_invernadero
-		
+
 		# Constructor de clase
 		# @param nombre [String] nombre del plato
 		# @param alimentos [Alimento::List] lista de alimentos del plato
 		def initialize(nombre, alimentos, &block)
-			super(nombre, alimentos, block)
+			super(nombre, alimentos, &block)
 		end
 
 		# Metodo para calcular la eficiencia energetica
