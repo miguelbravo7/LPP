@@ -6,3 +6,5 @@ gem 'guard'
 gem 'guard-rspec'
 gem 'guard-bundler'
 gem 'guard-shell'
+
+gem 'rake'
