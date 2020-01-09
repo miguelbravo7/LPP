@@ -11,7 +11,7 @@ module Alimento
 
 		# Atributo de clase utilizado para instanciar los nodos que tiene la lista
 		@@Nodo = Struct.new(:data, :prev, :next)
-		
+
 		# Constructor de clase
 		def initialize()
 			@head = nil
@@ -20,24 +20,24 @@ module Alimento
 		end
 
 		# Metodo para representar la clase como cadena
-		# @return [String] devuelve los valores como cadena que alberga la lista	
+		# @return [String] devuelve los valores como cadena que alberga la lista
 		def to_s
-       			current_node = @head
+ 			current_node = @head
 			output = ""
-        		while current_node != nil
-            			output += current_node[:data].to_s + "\n"
-            			current_node = current_node[:next]
-        		end
+  		while current_node != nil
+      			output += current_node[:data].to_s + "\n"
+      			current_node = current_node[:next]
+  		end
 
 			output
-    		end
+    end
 
 		# Getter del atributo de clase Nodo
 		# @return [Struct] atributo nodo de la clase
 		def self.Nodo
 			@@Nodo
 		end
-		
+
 		# Iterador de clase para cada valor desde la cabeza
 		# @yield [Object] valor almacenado en el nodo actual
 		def each
@@ -47,13 +47,13 @@ module Alimento
 				cur_node = cur_node[:next]
 			end
 
-    		end
+		end
 
 		# Inserta un valor al principio de la lista
 		# @param [Array<Object>, Object] valor o lista de valores a introducir
 		def insertar(value)
 			if value.respond_to? :each
-				value.each { |x| 
+				value.each { |x|
 					insertarValor(x)
 				}
 			else
@@ -68,13 +68,13 @@ module Alimento
 		# @return [true, false] en funcion de que se halla hecho la operacion o no
 		def insertarValor(value)
 			if !@tail.nil?
-                                @nodo = @@Nodo.new(value, @tail, nil)
-                                @tail[:next] = @nodo
-                                @tail = @nodo
+        @nodo = @@Nodo.new(value, @tail, nil)
+        @tail[:next] = @nodo
+        @tail = @nodo
 			else
 				@tail = @head = @@Nodo.new(value, @tail, nil)
 			end
-			
+
 			@size += 1
 
 			true
@@ -104,21 +104,21 @@ module Alimento
 		# Extrae el ultimo nodo de la lista
 		# @return (see #extraerPrimero)
 		def extraerUltimo
-                        if @size < 2
-                                if @tail.nil?
-                                        false
-                                else
-                                        @head = nil
-                                        @tail = nil
-                                        @size = 0
-                                        true
-                                end
-                        else
-                                @tail = @tail[:prev]
-                                @tail[:next] = nil
-                                @size -= 1
-                                true
-                        end
+      if @size < 2
+              if @tail.nil?
+                      false
+              else
+                      @head = nil
+                      @tail = nil
+                      @size = 0
+                      true
+              end
+      else
+              @tail = @tail[:prev]
+              @tail[:next] = nil
+              @size -= 1
+              true
+      end
 
 		end
 	end
