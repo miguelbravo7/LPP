@@ -8,3 +8,5 @@ gem 'guard-bundler'
 gem 'guard-shell'
 
 gem 'rake'
+
+gem 'coveralls', require: false
